@@ -3,6 +3,9 @@ library(shinythemes)
 library(datasets)
 
 shinyUI(fluidPage(
+  tags$head(
+    tags$link(rel = "stylesheet", type = "text/css", href = "style.css")
+  ),
   theme=shinytheme("slate"),# returns URL of a shiny theme
   themeSelector(), ## not required but can be used to select the theme
   
@@ -14,35 +17,33 @@ shinyUI(fluidPage(
     
     # START OF WELCOME TAB PANEL
     tabPanel("Welcome", value="Data",
-             
-             
              sidebarLayout(
-                 selectInput("dataset","Language", choices=c("English" = "e", "French" = "f", "Arabic" = 'a', "Spanish" = "s")),
-              
-               
-               
-               
-               mainPanel(
-                # h3(textOutput("Hi this is shaam Natheshwar"))
-               )
-             ),
-             sidebarLayout(
-               
                sidebarPanel(
-                
+                 selectInput("dataset","Language", choices=c("English" = "e", "French" = "f", "Arabic" = 'a', "Spanish" = "s")),
+                 tags$hr(),
                  selectInput("Run Demo","Choose the app", choices=c("Demo1" = "e", "Demo2" = "f", "Demo3" = 'a', "Demo4" = "s")),
                  tags$hr(),
-                 actionButton("button", "ActionButton"),
+                 actionButton("Login", "ActionButton"),
                ),
                
                
                mainPanel(
-                 h1("Header 1"),
+                 tags$div(class="container",h2("Welcome!"),
+                          
+                          h2("What is ACORN?"),
+                          p("ACORN is a Wellcome funded human health clinical antimicrobial resistance (AMR) surveillance project led by the Mahidol-Oxford Tropical Medicine Research Unit (MORU) and the Oxford University of Oxford Clinical Research Unit (OUCRU)."),
+                          h2("Why is ACORN needed?"),
+                          p("Existing AMR surveillance systems are based mostly on diagnostic microbiology laboratory antimicrobial susceptibility testing results alone, with minimal accompanying clinical information. Resulting data are of limited use for patient management and treatment guideline development, and do not allow for estimation of the clinically relevant impacts and burden of drug resistant infections (DRI). Tools to capture and analyse AMR data in low- and middle-income countries (LMIC) are scarce, which hinders local engagement with available data.
+
+To fill these gaps, ACORN is the implementation of a comprehensive data capture system for patient-focused AMR surveillance in LMIC settings. Surveillance includes diagnostic stewardship activities, to improve collection of appropriate microbiology specimens in patients with suspected infection. Data collected via ACORN harmonises with and expands on the pathogen-focused WHO Global Antimicrobial Resistance Surveillance System, to enable accurate classification of infection syndromes and patient outcomes. These data are of critical importance for estimation of syndromic and/or pathogen outcomes and associated costs: i.e. how many people die from DRIs and what is the economic impact of AMR?"),
+                          
+                          verbatimTextOutput("txtout"),), #end of container tag
                  
-                 h4("Output 1"),
-                 verbatimTextOutput("txtout"),
+                 tags$div(class="image", img(src='acorn.png', height=350, width=550),),
                  
-               )
+               ),
+               
+               
              )
              
              ),
@@ -79,7 +80,7 @@ shinyUI(fluidPage(
 
 
 
-
+#tags$img(src='acorn.png', height=350, width=550),
 
 
 ## Use navbarmenu to get the tab with menu capabilities

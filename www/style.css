@@ -1,0 +1,23 @@
+
+  
+  /* Change header text to imported font */
+  h2 {
+    font-family: 'Yusei Magic', sans-serif;
+  }
+  
+  /* Make text visible on inputs */
+  .shiny-input-container {
+    color: #474747;
+  }
+  .col-sm-4{
+    width: 400px;
+  }
+
+  .col-sm-8{
+    display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  }
+  .image{
+    margin-left: 40px;
+  }
